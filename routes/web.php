@@ -1,8 +1,11 @@
 <?php
 
 // use Illuminate\Http\Request;
+
+use App\Http\Controllers\ListingController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use PhpParser\Node\Expr\List_;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,20 +18,35 @@ use App\Models\Listing;
 |
 */
 
-// All Listings
-Route::get('/', function () {
-    return view('listings', [
-        'heading' => 'Latest Listings',
-        'listings' => Listing::all(),
+// Common Resource Routes:
+// index - Show all listings
+// show - Show single listing
+// create - Show form to create new listing
+// store - Store new listing
+// edit - Show form to edit listing
+// update - Update listing
+// destroy - Delete Listing
 
-    ]);
-});
+// All Listings
+Route::get('/', [ListingController::class, 'index']);
+
+
+// Show Create Form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Store Listing Data
+Route::post('/listings', [ListingController::class, 'store']);
+
+
 
 // Single Listing
-Route::get('/listings/{id}', function ($id) {
-    return view('listing', [
-        'listing' => Listing::find($id)
-    ]);
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+
+
+
+Route::get('/durgesh', function () {
+    return view('durgesh');
 });
 
 // Route::get('/hello',function() {
@@ -37,9 +55,6 @@ Route::get('/listings/{id}', function ($id) {
 //        ->header('custom','header');
 // });
 
-Route::get('/durgesh', function () {
-    return view('durgesh');
-});
 
 // Route::get('/posts/{id}',function($id) {
 //     // ddd($id);
