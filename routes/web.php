@@ -37,9 +37,9 @@ Route::get('/listings/{id}', function ($id) {
 //        ->header('custom','header');
 // });
 
-// Route::get('/durgesh',function() {
-//     return view('durgesh');
-// });
+Route::get('/durgesh', function () {
+    return view('durgesh');
+});
 
 // Route::get('/posts/{id}',function($id) {
 //     // ddd($id);
